@@ -91,7 +91,6 @@ export default function FramedPicture(props: FramedPictureProps) {
     if (imgRef.current) {
       Fancybox.bind("[data-fancybox='gallery']", {
         groupAll: true,
-        infinite: false,
       });
 
       return () => {
