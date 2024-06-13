@@ -44,6 +44,7 @@ export default function GalleryWall({ picturePropsList }: GalleryWallProps) {
   const [currentImage, setCurrentImage] = useState<string>("");
 
   const openLightbox = (imageSrc: string) => {
+    console.log('Opening lightbox for:', imageSrc);  // 添加日志
     setCurrentImage(imageSrc);
     setIsOpen(true);
   };
@@ -54,7 +55,7 @@ export default function GalleryWall({ picturePropsList }: GalleryWallProps) {
         <FramedPicture
           key={pictureProps.nameTag + index.toString()}
           {...pictureProps}
-          onClick={() => openLightbox(pictureProps.imageSrc)}  // 传递 onClick 事件处理器
+          onClick={() => openLightbox(pictureProps.imageSrc)}
         />
       ))}
 
@@ -63,7 +64,10 @@ export default function GalleryWall({ picturePropsList }: GalleryWallProps) {
           small={currentImage}
           large={currentImage}
           alt="Showing image in modal"
-          onClose={() => setIsOpen(false)}
+          onClose={() => {
+            console.log('Closing lightbox');  // 添加日志
+            setIsOpen(false);
+          }}
         />
       )}
     </div>

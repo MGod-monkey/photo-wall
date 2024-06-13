@@ -107,7 +107,12 @@ export default function FramedPicture(props: FramedPictureProps) {
         src={props.imageSrc}
         alt={"image about " + props.nameTag}
         className={styles.framedPictureImage}
-        onClick={props.onClick}  // 确保 onClick 事件被绑定
+        onClick={() => {
+          console.log('Image clicked:', props.imageSrc);  // 添加日志
+          if (props.onClick) {
+            props.onClick();
+          }
+        }}
         whileInView={{ scale: 1 }}
         transition={{ type: "spring", stiffness: 200, damping: 20, mass: 1 }}
         whileHover={{ scale: 1.05 }}
