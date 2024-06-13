@@ -41,9 +41,9 @@ interface GalleryWallProps {
 
 export default function GalleryWall({ picturePropsList }: GalleryWallProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState("");
+  const [currentImage, setCurrentImage] = useState<string>("");
 
-  const openLightbox = (imageSrc) => {
+  const openLightbox = (imageSrc: string) => { // 添加类型声明
     setCurrentImage(imageSrc);
     setIsOpen(true);
   };
