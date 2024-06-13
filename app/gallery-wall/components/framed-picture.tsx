@@ -71,7 +71,7 @@ import { motion } from "framer-motion";
 import { Oswald } from "next/font/google";
 import styles from "./styles.module.css";
 import { useEffect, useRef } from "react";
-import { Fancybox, Fancybox as FancyboxInstance } from "@fancyapps/ui";
+import { Fancybox } from "@fancyapps/fancybox";
 
 const nameTagFont = Oswald({ subsets: ["latin"] });
 
@@ -89,13 +89,13 @@ export default function FramedPicture(props: FramedPictureProps) {
 
   useEffect(() => {
     if (imgRef.current) {
-      const instance = FancyboxInstance.bind(imgRef.current, {
+      Fancybox.bind(imgRef.current, {
         groupAll: true,
         infinite: false,
       });
 
       return () => {
-        if (instance) instance.destroy();
+        Fancybox.close();
       };
     }
   }, [imgRef]);
