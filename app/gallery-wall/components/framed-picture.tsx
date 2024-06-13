@@ -71,7 +71,7 @@ import { motion } from "framer-motion";
 import { Oswald } from "next/font/google";
 import styles from "./styles.module.css";
 import { useEffect, useRef } from "react";
-import mediumZoom from "medium-zoom";
+import { Fancybox, Fancybox as FancyboxInstance } from "@fancyapps/ui";
 
 const nameTagFont = Oswald({ subsets: ["latin"] });
 
@@ -89,13 +89,13 @@ export default function FramedPicture(props: FramedPictureProps) {
 
   useEffect(() => {
     if (imgRef.current) {
-      const zoom = mediumZoom(imgRef.current, {
-        margin: 24,
-        background: 'rgba(0, 0, 0, 0.8)',
+      const instance = FancyboxInstance.bind(imgRef.current, {
+        groupAll: true,
+        infinite: false,
       });
 
       return () => {
-        zoom.detach();
+        if (instance) instance.destroy();
       };
     }
   }, [imgRef]);
@@ -125,6 +125,8 @@ export default function FramedPicture(props: FramedPictureProps) {
         alt={"image about " + props.nameTag}
         className={styles.framedPictureImage}
         ref={imgRef}
+        data-fancybox="gallery"
+        data-src={props.imageSrc}
         onClick={() => {
           console.log('Image clicked:', props.imageSrc);
           if (props.onClick) {
