@@ -70,6 +70,8 @@
 import { motion } from "framer-motion";
 import { Oswald } from "next/font/google";
 import styles from "./styles.module.css";
+import { useEffect, useRef } from "react";
+import mediumZoom from "medium-zoom";
 
 const nameTagFont = Oswald({ subsets: ["latin"] });
 
@@ -83,6 +85,14 @@ export interface FramedPictureProps {
 }
 
 export default function FramedPicture(props: FramedPictureProps) {
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    if (imgRef.current) {
+      mediumZoom(imgRef.current);
+    }
+  }, [imgRef]);
+
   function getRandom(min: number, max: number): number {
     return Math.random() * (max - min) + min;
   }
@@ -107,8 +117,9 @@ export default function FramedPicture(props: FramedPictureProps) {
         src={props.imageSrc}
         alt={"image about " + props.nameTag}
         className={styles.framedPictureImage}
+        ref={imgRef}
         onClick={() => {
-          console.log('Image clicked:', props.imageSrc);  // 添加日志
+          console.log('Image clicked:', props.imageSrc);
           if (props.onClick) {
             props.onClick();
           }
@@ -119,16 +130,12 @@ export default function FramedPicture(props: FramedPictureProps) {
         whileTap={{ scale: 1 }}
       />
       {props.nameTag != "" && (
-        <h1
-          className={nameTagFont.className + " " + styles.framedPictureNameTag}
-        >
+        <h1 className={nameTagFont.className + " " + styles.framedPictureNameTag}>
           {props.nameTag}
         </h1>
       )}
       {props.timeTag != "" && (
-        <p
-          className={nameTagFont.className + " " + styles.framedPictureTimeTag}
-        >
+        <p className={nameTagFont.className + " " + styles.framedPictureTimeTag}>
           {props.timeTag}
         </p>
       )}
