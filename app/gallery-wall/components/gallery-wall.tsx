@@ -34,6 +34,7 @@
 import React, { useState } from 'react';
 import FramedPicture, { FramedPictureProps } from "./framed-picture";
 import Lightbox from 'react-modal-image';
+import 'react-modal-image/lib/react-modal-image.css'; // 确保样式文件被引入
 
 interface GalleryWallProps {
   picturePropsList: FramedPictureProps[];
@@ -73,3 +74,4 @@ export default function GalleryWall({ picturePropsList }: GalleryWallProps) {
     </div>
   );
 }
+

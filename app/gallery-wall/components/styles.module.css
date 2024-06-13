@@ -1,9 +1,9 @@
 .framedPicture {
-  background-color: white;
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+    background-color: white;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .framedPictureImage {
@@ -12,17 +12,16 @@
     cursor: pointer;  /* 确保光标变为手形，提示可以点击 */
 }
 
-
 .framedPictureNameTag {
     font-size: 1.5rem;
     line-height: 2rem;
     font-weight: 600;
-    color:rgb(60, 60, 60);
+    color: rgb(60, 60, 60);
 }
 
 .framedPictureTimeTag {
     font-size: 1rem;
     line-height: 1.5rem;
     font-weight: 300;
-    color:rgb(58, 58, 58);
+    color: rgb(58, 58, 58);
 }
