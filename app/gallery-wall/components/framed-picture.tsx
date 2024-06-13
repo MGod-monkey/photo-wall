@@ -89,7 +89,14 @@ export default function FramedPicture(props: FramedPictureProps) {
 
   useEffect(() => {
     if (imgRef.current) {
-      mediumZoom(imgRef.current);
+      const zoom = mediumZoom(imgRef.current, {
+        margin: 24,
+        background: 'rgba(0, 0, 0, 0.8)',
+      });
+
+      return () => {
+        zoom.detach();
+      };
     }
   }, [imgRef]);
 
