@@ -30,47 +30,40 @@
 //   );
 // }
 
-// 必要的库和样式引入
 "use client";
 import React, { useState } from 'react';
 import FramedPicture, { FramedPictureProps } from "./framed-picture";
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css';  // 确保你有这个CSS文件
+import Lightbox from 'react-modal-image';
 
 interface GalleryWallProps {
   picturePropsList: FramedPictureProps[];
 }
 
 export default function GalleryWall({ picturePropsList }: GalleryWallProps) {
-  // 状态管理
-  const [photoIndex, setPhotoIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [currentImage, setCurrentImage] = useState("");
+
+  const openLightbox = (imageSrc) => {
+    setCurrentImage(imageSrc);
+    setIsOpen(true);
+  };
 
   return (
     <div className="flex flex-wrap justify-between items-center xl:py-20 xl:p-40 gap-x-10 gap-y-20">
       {picturePropsList.map((pictureProps, index) => (
         <FramedPicture
           key={pictureProps.nameTag + index.toString()}
-          {...pictureProps}  // 展开其他所有props
-          onClick={() => {
-            setPhotoIndex(index);  // 设置当前图片索引
-            setIsOpen(true);  // 打开lightbox
-          }}
+          {...pictureProps}
+          onClick={() => openLightbox(pictureProps.imageSrc)}
         />
       ))}
 
       {isOpen && (
         <Lightbox
-          mainSrc={picturePropsList[photoIndex].imageSrc}
-          nextSrc={picturePropsList[(photoIndex + 1) % picturePropsList.length].imageSrc}
-          prevSrc={picturePropsList[(photoIndex + picturePropsList.length - 1) % picturePropsList.length].imageSrc}
-          onCloseRequest={() => setIsOpen(false)}
-          onMovePrevRequest={() =>
-            setPhotoIndex((photoIndex + picturePropsList.length - 1) % picturePropsList.length)
-          }
-          onMoveNextRequest={() =>
-            setPhotoIndex((photoIndex + 1) % picturePropsList.length)
-          }
+          small={currentImage}
+          large={currentImage}
+          alt="Showing image in modal"
+          onClose={() => setIsOpen(false)}
         />
       )}
     </div>
