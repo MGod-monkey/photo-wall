@@ -89,7 +89,7 @@ export default function FramedPicture(props: FramedPictureProps) {
 
   useEffect(() => {
     if (imgRef.current) {
-      Fancybox.bind(imgRef.current, {
+      Fancybox.bind("[data-fancybox='gallery']", {
         groupAll: true,
         infinite: false,
       });
@@ -98,7 +98,7 @@ export default function FramedPicture(props: FramedPictureProps) {
         Fancybox.close();
       };
     }
-  }, [imgRef]);
+  }, []);
 
   function getRandom(min: number, max: number): number {
     return Math.random() * (max - min) + min;
