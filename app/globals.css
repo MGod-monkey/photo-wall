@@ -1,4 +1,4 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "@fancyapps/fancybox/dist/fancybox.css";
+@import "@fancyapps/ui/dist/fancybox.css";

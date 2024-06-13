@@ -71,7 +71,7 @@ import { motion } from "framer-motion";
 import { Oswald } from "next/font/google";
 import styles from "./styles.module.css";
 import { useEffect, useRef } from "react";
-import { Fancybox } from "@fancyapps/fancybox";
+import { Fancybox } from "@fancyapps/ui";
 
 const nameTagFont = Oswald({ subsets: ["latin"] });
 
