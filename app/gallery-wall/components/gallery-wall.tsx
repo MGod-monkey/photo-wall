@@ -43,7 +43,7 @@ export default function GalleryWall({ picturePropsList }: GalleryWallProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState<string>("");
 
-  const openLightbox = (imageSrc: string) => { // 添加类型声明
+  const openLightbox = (imageSrc: string) => {
     setCurrentImage(imageSrc);
     setIsOpen(true);
   };
@@ -54,7 +54,7 @@ export default function GalleryWall({ picturePropsList }: GalleryWallProps) {
         <FramedPicture
           key={pictureProps.nameTag + index.toString()}
           {...pictureProps}
-          onClick={() => openLightbox(pictureProps.imageSrc)}
+          onClick={() => openLightbox(pictureProps.imageSrc)}  // 传递 onClick 事件处理器
         />
       ))}
 

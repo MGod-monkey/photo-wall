@@ -9,6 +9,7 @@
 .framedPictureImage {
     max-height: 300px;
     margin-bottom: 1.25rem;
+    cursor: pointer;  /* 确保光标变为手形，提示可以点击 */
 }
 
 
